@@ -152,7 +152,7 @@ cmpt_freq <- function(data,
                   iter = stan_iter,
                   thin = stan_thin,
                   control = list(max_treedepth = stan_max_treedepth))
-  print("computing p value.....")
+  cat("computing p value.....")
   p <- data.frame(p_mean  = numeric(M),
                   p_0025  = numeric(M),
                   p_025   = numeric(M),
