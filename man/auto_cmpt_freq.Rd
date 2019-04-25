@@ -49,7 +49,7 @@ list data having follow 5 components:
  the probability that ture frequency is smaller than \code{$p_0025}
  is 0.025. \code{$p_025}, \code{$p_075} and \code{$p_0975} is defined
  in the same way as \code{$p_0025}. \code{$p_n_eff} and \code{$p_Rhat} is
- index to check convergence. In this function, if \code{$p_0025 < ##########} and \code{$p_Rhat < ########}, then consider the MCMC to converge}
+ index to check convergence. In this function, if \code{$p_Rhat > 1.1}, then regard the MCMC to converge}
  \item{\code{$data}: same as the input data, used in \code{\link{freq_graph}}}
  \item{\code{$rho}: same as the input rho}
  \item{\code{$sigma}: same as the input sigma}
@@ -57,4 +57,9 @@ list data having follow 5 components:
 }
 \description{
 Bayesian Gaussian Process regression with Stan: automatically computation of frequency by MCMC
+}
+\examples{
+d <- Osayama
+e <- auto_cmpt_freq(d)
+freq_graph(e)
 }

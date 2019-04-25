@@ -22,9 +22,9 @@
 #' }
 #' @param graphic_theme one of either:
 #' \itemize{
-#'  \item{0: default theme, with y
+#'  \item{1: default theme, with y
 #'   axis label, graph frame, and grid.}
-#'  \item{1: simple theme, only with x axis
+#'  \item{2: simple theme, only with x axis
 #'   in plot area.}
 #' }
 #' @param grid one of either (only used if \code{graphic_theme = 1}):
@@ -56,7 +56,10 @@
 #'   largest and smallest data, and number of data. Defaults to \code{FALSE}.
 #' @return data.frame of the x-coordinats and height of peaks. Only
 #'   returned if \code{analyze =TRUE}.
-#'
+#'@examples
+#' d <- Osayama
+#' e <- cmpt_freq(d,rho=3,sigma=2)
+#' freq_graph(e)
 
 
 freq_graph <- function(data,

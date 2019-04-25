@@ -36,9 +36,9 @@ confident interval of the estimate line.}
 
 \item{graphic_theme}{one of either:
 \itemize{
- \item{0: default theme, with y
+ \item{1: default theme, with y
   axis label, graph frame, and grid.}
- \item{1: simple theme, only with x axis
+ \item{2: simple theme, only with x axis
   in plot area.}
 }}
 
@@ -88,4 +88,9 @@ data.frame of the x-coordinats and height of peaks. Only
 \description{
 Drawing frequency graph (density plot) and analyzing the out put of
 \code{\link{cmpt_auto_freq}} or \code{\link{cmpt_freq}}.
+}
+\examples{
+d <- Osayama
+e <- cmpt_freq(d,rho=3,sigma=2)
+freq_graph(e)
 }
