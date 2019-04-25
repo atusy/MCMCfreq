@@ -2,7 +2,7 @@
 ## Overviwe
 The MCMCfreq package provides Bayesian Gaussian Process regression with Stan for one dimentional data. Althoug this package was created to correctly estimate the age frequency spectrum of detrital zircon, it can be widely applied to various data instead of histogram.
 
-##Installation
+## Installation
 
 In advance, you need a working environment of Stan.
 ```r
@@ -13,7 +13,7 @@ library(devtools)
 install_github("Tan-Furukawa/MCMCfreq")
 ```
 
-##Examples
+## Examples
 
 The function `auto_cmpt_freq()` is effective for detrital zircon data.
 ```r
