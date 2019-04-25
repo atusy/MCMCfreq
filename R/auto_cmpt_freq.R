@@ -41,52 +41,52 @@
 #-------------------------------------------------------------------------------
 #parameters
 #-------------------------------------------------------------------------------
-  cmpt_auto_freq <- function(data,
-                            M = as.integer(50),
-                            delta = 1/25,
-                            max_rho = 10,
-                            ex_sigma = 2,
-                            stan_seed = as.integer(1234),
-                            stan_chains = as.integer(3),
-                            stan_warmup = as.integer(300),
-                            stan_thin = as.integer(1),
-                            stan_iter = as.integer(1300),
-                            stan_max_treedepth = as.integer(10)){
-    ##### attention ! #####
-    #-----------------------------------------------------------------------------
-    if(is.vector(data) == FALSE) {
-      stop("'data' must be vector")
-    }
-    if(is.integer(M) == FALSE | M < 0) {
-      stop("'M' must be integer")
-    }
-    if(is.numeric(delta) == FALSE | delta < 0 | delta > 1) {
-      stop("'delta' must be numeric between 0 and 1")
-    }
-    if(is.numeric(max_rho) == FALSE | delta < 0) {
-      stop("'max_rho' must be numeric > 1")
-    }
-    if(is.numeric(ex_sigma) == FALSE | delta < 0) {
-      stop("'ex_sigma' must be numeric > 0")
-    }
-    if(is.integer(stan_seed) == FALSE | stan_seed < 0) {
-      stop("'stan_seed' must be integer")
-    }
-    if(is.integer(stan_chains) == FALSE | stan_chains < 0) {
-      stop("'stan_chains' must be integer")
-    }
-    if(is.integer(stan_warmup) == FALSE | stan_warmup < 0) {
-      stop("'stan_warmup' must be integer")
-    }
-    if(is.integer(stan_thin) == FALSE | stan_thin < 0) {
-      stop("'stan_thin' must be integer")
-    }
-    if(is.integer(stan_iter) == FALSE | stan_iter < 0) {
-      stop("'stan_iter' must be integer")
-    }
-    if(is.integer(stan_max_treedepth) == FALSE | stan_max_treedepth < 0) {
-      stop("'stan_max_treedepth' must be integer")
-    }
+auto_cmpt_freq <- function(data,
+                           M = as.integer(50),
+                           delta = 1/25,
+                           max_rho = 10,
+                           ex_sigma = 2,
+                           stan_seed = as.integer(1234),
+                           stan_chains = as.integer(3),
+                           stan_warmup = as.integer(300),
+                           stan_thin = as.integer(1),
+                           stan_iter = as.integer(1300),
+                           stan_max_treedepth = as.integer(10)){
+  ##### attention ! #####
+  #-----------------------------------------------------------------------------
+  if(is.vector(data) == FALSE) {
+    stop("'data' must be vector")
+  }
+  if(is.integer(M) == FALSE | M < 0) {
+    stop("'M' must be integer")
+  }
+  if(is.numeric(delta) == FALSE | delta < 0 | delta > 1) {
+    stop("'delta' must be numeric between 0 and 1")
+  }
+  if(is.numeric(max_rho) == FALSE | delta < 0) {
+    stop("'max_rho' must be numeric > 1")
+  }
+  if(is.numeric(ex_sigma) == FALSE | delta < 0) {
+    stop("'ex_sigma' must be numeric > 0")
+  }
+  if(is.integer(stan_seed) == FALSE | stan_seed < 0) {
+    stop("'stan_seed' must be integer")
+  }
+  if(is.integer(stan_chains) == FALSE | stan_chains < 0) {
+    stop("'stan_chains' must be integer")
+  }
+  if(is.integer(stan_warmup) == FALSE | stan_warmup < 0) {
+    stop("'stan_warmup' must be integer")
+  }
+  if(is.integer(stan_thin) == FALSE | stan_thin < 0) {
+    stop("'stan_thin' must be integer")
+  }
+  if(is.integer(stan_iter) == FALSE | stan_iter < 0) {
+    stop("'stan_iter' must be integer")
+  }
+  if(is.integer(stan_max_treedepth) == FALSE | stan_max_treedepth < 0) {
+    stop("'stan_max_treedepth' must be integer")
+  }
   #-----------------------------------------------------------------------------
   #package etc
   #-----------------------------------------------------------------------------

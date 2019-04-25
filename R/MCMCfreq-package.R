@@ -1,7 +1,7 @@
 #' The 'MCMCfreq' package.
-#' 
-#' @description A DESCRIPTION OF THE PACKAGE
-#' 
+#'
+#' @description Package to draw density curve and computation of frequency by MCMC. (Beta Version)
+#'
 #' @docType package
 #' @name MCMCfreq-package
 #' @aliases MCMCfreq
@@ -10,8 +10,16 @@
 #' @import Rcpp
 #' @import rstantools
 #' @importFrom rstan sampling
-#' 
-#' @references 
+#' @author Tan Furukawa <rpackagetan@gmail.com>
+#' @references
+#' \itemize{
+#' \item{
 #' Stan Development Team (2018). RStan: the R interface to Stan. R package version 2.18.2. http://mc-stan.org
-#' 
+#' }
+#' \item{
+#' Tsujimori, T. (1998). Geology of the Osayama serpentinite melange in the central Chugoku Mountains,
+#'  southwestern Japan: 320 Ma blueschist-bearing serpentinite melange beneath the Oyama ophiolite.
+#'  Jour. Geol. Soc. Japan, 104, 213-231.
+#' }
+#' }
 NULL
