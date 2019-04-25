@@ -5,6 +5,7 @@ The MCMCfreq package provides Bayesian Gaussian Process regression with Stan for
 ## Installation
 
 In advance, you need a working environment of Stan.
+
 ```r
 install.packages("rstan")
 install.packages("rstantools")
@@ -16,6 +17,7 @@ install_github("Tan-Furukawa/MCMCfreq")
 ## Examples
 
 The function `auto_cmpt_freq()` is effective for detrital zircon data.
+
 ```r
 library(MCMCfreq)
 d <- Osayama
@@ -26,6 +28,7 @@ freq_graph(e, hist = T, ylab = "Frequency")
 
 The pair (rho,sigma) having smaller WAIC means better model;
 therefore, we should serch better rho and sigma to make WAIC smaller.
+
 ```r
 library(MCMCfreq)
 d <- Osayama
