@@ -21,5 +21,9 @@
 #'  southwestern Japan: 320 Ma blueschist-bearing serpentinite melange beneath the Oyama ophiolite.
 #'  Jour. Geol. Soc. Japan, 104, 213-231.
 #' }
+#' \item{
+#' Riihimäki, J., & Vehtari, A. (2014). Laplace approximation for logistic Gaussian process density
+#' estimation and regression. Bayesian analysis, 9(2), 425-448.
+#' }
 #' }
 NULL
