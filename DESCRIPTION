@@ -7,8 +7,6 @@ Authors@R:
            role = c("aut", "cre"),
            email = "rpackagetan@gmail.com")
 Description:Package to draw density curve by MCMC. (Beta Version)
-Author:Tan Furukawa [aut, cre]
-Maintainer:Tan Furukawa <rpackagetan@gmail.com> 
 License: GPL (>=3)
 Depends: 
     methods,
