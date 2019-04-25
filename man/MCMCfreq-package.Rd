@@ -19,7 +19,7 @@ Tsujimori, T. (1998). Geology of the Osayama serpentinite melange in the central
  Jour. Geol. Soc. Japan, 104, 213-231.
 }
 \item{
-Riihimäki, J., & Vehtari, A. (2014). Laplace approximation for logistic Gaussian process density
+Riihimäki, J., and Vehtari, A. (2014). Laplace approximation for logistic Gaussian process density
 estimation and regression. Bayesian analysis, 9(2), 425-448.
 }
 }
