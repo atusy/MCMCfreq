@@ -1,6 +1,6 @@
 Package: MCMCfreq
 Title: Bayesian Gaussian Process regression with Stan: computation of frequency by MCMC
-Version: 0.0.1.0000
+Version: 0.0.2
 Authors@R: 
     person(given = "Tan",
            family = "Furukawa",

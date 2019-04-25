@@ -156,7 +156,8 @@ cmpt_freq <- function(data,
                   iter = stan_iter,
                   thin = stan_thin,
                   control = list(max_treedepth = stan_max_treedepth))
-  cat("computing p value.....")
+  cat("computing p(x) value.....")
+  cat("\n")
   p <- data.frame(p_mean  = numeric(M),
                   p_0025  = numeric(M),
                   p_025   = numeric(M),
@@ -184,6 +185,7 @@ cmpt_freq <- function(data,
     warning("MCMC is not convergent (Rhat > 1.1)")
   }
   cat("computing WAIC.....")
+  cat("\n")
   ##WAIC
   q <- rstan::extract(fit)$p
   q2 <- colMeans(q)
@@ -196,6 +198,9 @@ cmpt_freq <- function(data,
 
   age_X <- Min_d + (Max_d-Min_d) * X
   p <- cbind(data.frame(age_X=age_X),p)
+
+  cat("now rho = ", rho,"sigma = ",sigma,"WAIC = ",WAIC)
+  cat("\n")
 
   answer <- list(WAIC = WAIC, p = p, data = d, rho = rho, sigma = sigma)
 

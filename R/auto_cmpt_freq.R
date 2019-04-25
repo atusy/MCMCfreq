@@ -1,7 +1,16 @@
 #This program finds the 95% Bayesian confidence interval of
 #density curve when A and B are not fixed
 
-#' Bayesian Gaussian Process regression with Stan: automatically computation of frequency by MCMC
+#' Bayesian Gaussian Process regression with Stan: automatically computation of
+#' frequency by MCMC.
+#'
+#' WAIC is determined by rho, sigma, data and M. So, we can
+#' explicitly show WAIC = WAIC(rho,sigam,data,M). If M and data is fixed, WAIC
+#' is the function only having rho and sigma as variables. The algorithm for
+#' finding the minimum value of WAIC is as follows.
+#' for(rho in 1:rho_max); if(WAIC(rho+1,ex_sigma) is larger than WAIC(rho,ex_sigma));
+#' then return \code{cmpt_freq(data,rho,ex_sigma)} The details are ######
+#'
 #'
 #' @export
 #' @param data a vector of one dimentional data.
@@ -14,8 +23,8 @@
 #'  In order to stabilize computation, both ends of the graph have no data
 #' points. The size is expressed by \code{delta} times size of plot area
 #'  in the x-axis direction.
-#' @param max_rho numeric > 1; See ######
-#' @param ex_sigma expected value of sigma > 0; See ####
+#' @param max_rho numeric > 1; See \strong{Description}
+#' @param ex_sigma expected value of sigma > 0; See \strong{Description}
 #' @param stan_seed see \code{?stan} in \code{library(rstan)}
 #' @param stan_chains see \code{?stan} in \code{library(rstan)}
 #' @param stan_warmup see \code{?stan} in \code{library(rstan)}
@@ -24,7 +33,7 @@
 #' @param stan_max_treedepth see \code{?stan} in \code{library(rstan)}
 #' @return list data having follow 5 components:
 #' \itemize{
-#'  \item{\code{$WAIC}: See \strong{Description}}
+#'  \item{\code{$WAIC}: See \strong{Description} in in \code{\link{cmpt_freq}}}
 #'  \item{\code{$p}: data.frame of the MCMC result. \code{$age_X} is x
 #'  coodinates and \code{$p_mean} is estimate. \code{$p_0025} means that
 #'  the probability that ture frequency is smaller than \code{$p_0025}
@@ -48,7 +57,7 @@ auto_cmpt_freq <- function(data,
                            M = as.integer(50),
                            delta = 1/25,
                            max_rho = 10,
-                           ex_sigma = 2,
+                           ex_sigma = 3,
                            stan_seed = as.integer(1234),
                            stan_chains = as.integer(3),
                            stan_warmup = as.integer(300),
@@ -148,7 +157,8 @@ auto_cmpt_freq <- function(data,
                            iter = stan_iter,
                            thin = stan_thin,
                            control = list(max_treedepth = stan_max_treedepth))
-    cat("computing p value.....")
+    cat("computing p(x) value.....")
+    cat("\n")
     p <- data.frame(p_mean  = numeric(M),
                     p_0025  = numeric(M),
                     p_025   = numeric(M),
@@ -177,6 +187,8 @@ auto_cmpt_freq <- function(data,
       warning("MCMC is not convergent (Rhat > 1.1)")
     }
     cat("computing WAIC.....")
+    cat("\n")
+
     ##WAIC
     r <- rstan::extract(fit)
     q <- r$p
@@ -184,11 +196,14 @@ auto_cmpt_freq <- function(data,
     q3 <- log(q)
     q4 <- apply(q3, 2, var)
 
-    lppd <- sum(y*log(q2))
-    pwaic <- sum(y*q4)
-    WAIC <- -2*(lppd-pwaic)
+    lppd <- sum(y * log(q2))
+    pwaic <- sum(y * q4)
+    WAIC <- -2*(lppd - pwaic)
 
-    ans <- list(p=p,WAIC=WAIC,rho=rho,sigma=sigma)
+    cat("now rho = ", rho,"sigma = ",sigma,"WAIC = ",WAIC)
+    cat("\n")
+
+    ans <- list(p = p, WAIC = WAIC, rho = rho, sigma = sigma)
 
     return(ans)
   }
@@ -200,25 +215,29 @@ auto_cmpt_freq <- function(data,
 
   for(i in 1:max_rho){
 
-    c <- waic(i,ex_sigma)
+    c <- waic(i, ex_sigma)
 
     waic_rho[i] <- c$WAIC
-    p_rho <- c(p_rho,list(c$p))
+    p_rho <- c(p_rho, list(c$p))
 
     if(i != 1){
-      if(waic_rho[i] > waic_rho[i-1]){
+      if(waic_rho[i] > waic_rho[i - 1]){
         break
       }
     }
+    if(i == max_rho){
+      warning("Use larger max_rho or cmpt_freq()")
+    }
   }
 
-  p <- p_rho[[i-1]]
-  WAIC <- waic_rho[i-1]
+  rho <- i - 1
+  p <- p_rho[[i - 1]]
+  WAIC <- waic_rho[i - 1]
 
-  age_X <- Min_d + (Max_d-Min_d) * X
-  p <- cbind(data.frame(age_X=age_X),p)
+  age_X <- Min_d + (Max_d - Min_d) * X
+  p <- cbind(data.frame(age_X = age_X), p)
 
-  answer <- list(WAIC=WAIC,p=p,data=d)
+  answer <- list(WAIC = WAIC, p = p, data = d, rho = rho, sigma = ex_sigma)
   return(answer)
 }
 

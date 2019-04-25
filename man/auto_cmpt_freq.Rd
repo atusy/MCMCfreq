@@ -2,10 +2,11 @@
 % Please edit documentation in R/auto_cmpt_freq.R
 \name{auto_cmpt_freq}
 \alias{auto_cmpt_freq}
-\title{Bayesian Gaussian Process regression with Stan: automatically computation of frequency by MCMC}
+\title{Bayesian Gaussian Process regression with Stan: automatically computation of
+frequency by MCMC.}
 \usage{
 auto_cmpt_freq(data, M = as.integer(50), delta = 1/25, max_rho = 10,
-  ex_sigma = 2, stan_seed = as.integer(1234),
+  ex_sigma = 3, stan_seed = as.integer(1234),
   stan_chains = as.integer(3), stan_warmup = as.integer(300),
   stan_thin = as.integer(1), stan_iter = as.integer(1300),
   stan_max_treedepth = as.integer(10))
@@ -24,9 +25,9 @@ no-data area in frequency plot.
 points. The size is expressed by \code{delta} times size of plot area
  in the x-axis direction.}
 
-\item{max_rho}{numeric > 1; See ######}
+\item{max_rho}{numeric > 1; See \strong{Description}}
 
-\item{ex_sigma}{expected value of sigma > 0; See ####}
+\item{ex_sigma}{expected value of sigma > 0; See \strong{Description}}
 
 \item{stan_seed}{see \code{?stan} in \code{library(rstan)}}
 
@@ -43,7 +44,7 @@ points. The size is expressed by \code{delta} times size of plot area
 \value{
 list data having follow 5 components:
 \itemize{
- \item{\code{$WAIC}: See \strong{Description}}
+ \item{\code{$WAIC}: See \strong{Description} in in \code{\link{cmpt_freq}}}
  \item{\code{$p}: data.frame of the MCMC result. \code{$age_X} is x
  coodinates and \code{$p_mean} is estimate. \code{$p_0025} means that
  the probability that ture frequency is smaller than \code{$p_0025}
@@ -56,7 +57,12 @@ list data having follow 5 components:
 }
 }
 \description{
-Bayesian Gaussian Process regression with Stan: automatically computation of frequency by MCMC
+WAIC is determined by rho, sigma, data and M. So, we can
+explicitly show WAIC = WAIC(rho,sigam,data,M). If M and data is fixed, WAIC
+is the function only having rho and sigma as variables. The algorithm for
+finding the minimum value of WAIC is as follows.
+for(rho in 1:rho_max); if(WAIC(rho+1,ex_sigma) is larger than WAIC(rho,ex_sigma));
+then return \code{cmpt_freq(data,rho,ex_sigma)} The details are ######
 }
 \examples{
 d <- Osayama
