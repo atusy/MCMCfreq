@@ -25,5 +25,8 @@
 #' Riihimäki, J., and Vehtari, A. (2014). Laplace approximation for logistic Gaussian process density
 #' estimation and regression. Bayesian analysis, 9(2), 425-448.
 #' }
+#' \iten{
+#' Furukawa, T. (2019). Bayesian statistical evaluation method for detrital zircon geochronology.
+#' In Abstract of annual meeting of JpGU, Chiba, Japan, 2019.}
 #' }
 NULL
