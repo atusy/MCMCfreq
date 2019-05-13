@@ -41,7 +41,7 @@ print(WAIC)
 ```
 
 ## Author
-Tan Furukawa 
+Tan Furukawa (古川旦)
 
 e-mail: rpackagetan@gmail.com
 
